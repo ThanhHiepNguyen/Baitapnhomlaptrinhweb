@@ -1,0 +1,99 @@
+* footer */
+.footer {
+  margin: 0;
+}
+
+footer p {
+  margin: 10px 0;
+
+}
+
+.footer_main {
+  display: grid;
+  grid-template-columns: auto auto auto auto ;
+  grid-template-rows: auto auto;
+  
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: #343434;
+  color: #fdfdfb;
+  padding-top: 100px;
+  padding-bottom: 200px;
+}
+
+.footer1, .footer2, .footer3, .footer4 { /* Sửa định dạng */
+  padding: 10px;
+}
+
+.footer1 .footer_logo i{
+  margin-top: 20px;
+  margin-left: 20px;
+  
+}
+
+.footer2 .footer2_links {
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.footer2_link li {
+  margin-bottom: 15px;
+}
+
+.footer2_link ol li a {
+  color: rgb(136, 136, 136);
+  text-decoration: none;
+  transition: all 0.5s ease-in;
+}
+
+.footer2_link ol li a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.footer3 .footer3_content {
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+/* Xóa khối không cần thiết hoặc thêm thuộc tính nếu cần */
+/* .footer3 .footer3_content img { } */
+.footer3_img{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.footer3_img img { /* Giới hạn phạm vi */
+  border-radius: 12px;
+  margin: 5px;
+
+}
+
+.footer4 a{
+  color: rgb(120, 118, 118)
+}
+
+.footer4 .footer4_content {
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+
+
+.footer4_logo {
+  display: grid;
+  grid-template-columns: auto auto  ;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.content_logo{
+  padding-left: 20px;
+}
+
+.footer5{
+  text-align: center;
+  margin-top: 50px;
+  grid-column: 1 / 5;
+}

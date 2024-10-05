@@ -1,0 +1,127 @@
+/* Giới thiệu */
+
+
+.row_gt {
+  margin-top: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.column_gt {
+  float: left;
+  width: 50%;
+  padding: 15px;
+}
+
+.content_gt , .column-master{ /* Sửa lỗi chính tả */
+  color: orange;
+}
+
+.row_gt::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column_gt img {
+  border-radius: 16px;
+  width: 100%; /* Hình ảnh responsive */
+  max-width: 500px; /* Giới hạn chiều rộng tối đa */
+  height: auto; /* Đảm bảo tỉ lệ khung hình */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+/* Kim chỉ nam */
+/* === Overlay === */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+  display: none;
+}
+
+#overlay.show {
+  display: block;
+}
+
+.row_kcn {
+  margin-top: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.column_kcn {
+  float: left;
+  width: 50%;
+  padding: 15px;
+}
+
+.title {
+  border: 1px rgb(201, 199, 199) solid;
+  border-radius: 7px;
+  padding: 25px 40px;
+  margin-bottom: 20px;
+  max-height: 65px; /* Đặt chiều cao ban đầu */
+  overflow: hidden; /* Ẩn nội dung tràn ra */
+  transition-delay: 0.5s;
+  transition: var(--smooth);
+}
+
+main p {
+  margin: 10px 0;
+  line-height: 2.5;
+}
+
+.arow_master {
+  margin-bottom: 40px;
+  float: left;
+  width: 100%;
+  cursor: pointer;
+  transition: var(--smooth);
+  z-index: 6;
+}
+
+.arow_master .arow {
+  width: 16px;
+  height: 2px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 2px;
+  transition: var(--smooth);
+  transform: translateY(-10px);
+  position: relative;
+}
+
+.arow_master .arow:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 2px;
+  transition: var(--smooth);
+  transform: rotate(90deg); /* Mũi tên dọc */
+}
+
+/* button_animation */
+.open .arow:before {
+  transform: rotate(0deg); /* Xoay thành mũi tên chỉ ngang khi mở */
+}
+
+.open .title {
+  transition: var(--smooth);
+}
+
+.content_open {
+  max-height: 1000px; /* Chiều cao lớn để mở toàn bộ nội dung */
+  transition: var(--smooth);
+}
+
+:root {
+  --smooth: all 0.5s ease-in-out;
+}
+
+
