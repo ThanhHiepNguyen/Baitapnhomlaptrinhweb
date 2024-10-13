@@ -16,7 +16,7 @@ footer p {
   padding-left: 10%;
   padding-right: 10%;
   background-color: #343434;
-  color: #fdfdfb;
+  color: rgb(120, 118, 118); font-size: 16px;
   padding-top: 100px;
   padding-bottom: 200px;
 }
@@ -96,4 +96,29 @@ footer p {
   text-align: center;
   margin-top: 50px;
   grid-column: 1 / 5;
+}
+
+@media (max-width: 768px) {
+  .footer_main {
+      padding: 20px 5%;
+  }
+
+  .footer1 {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .footer2,
+  .footer3,
+  .footer4 {
+      margin-bottom: 20px;
+  }
+
+  .footer2_link ol {
+      gap: 8px;
+  }
+
+  .footer3_img {
+      justify-content: space-between;
+  }
 }

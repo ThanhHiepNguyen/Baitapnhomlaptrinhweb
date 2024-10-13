@@ -1,22 +1,29 @@
-/* Phần này thuộc trang tin tức */
+Phần này thuộc trang tin tức
 :root{
     --color_text : rgb(120, 118, 118);
   }
+
   
   .tab_mains {
     display: grid;
-    grid-template-columns: auto  auto auto   ; /* Sử dụng repeat để dễ đọc hơn */
-    grid-template-rows: auto auto; 
-    /* margin: 30px; */
+    grid-template-columns: auto  auto auto;
+    column-gap: 30px;
     padding-left: 10%;
     padding-right: 10%;
     font-family: "Poppins", sans-serif; /* Đảm bảo "Poppins" được tải */
     margin-bottom: 100px;
   }
+
+  .tab_main1{
+    display: grid;
+    grid-template-columns: auto; 
+    row-gap: 30px;
+    height: auto;
+  }
   
   .tab_main {
     height: auto;
-    width: 350px;
+    width: 380px;
     background-color: #ffffff;
     border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
@@ -36,10 +43,11 @@
   }
 
   .tab_img{
-    width: 350px;
+    width: auto;
     height: 200px;
     align-items: center;
     justify-items: center;
+    border-radius: 16px 16px 0 0;
     overflow: hidden;
   }
   
@@ -47,7 +55,6 @@
     margin: 0;
     width: 100%; /* Đảm bảo ảnh luôn chiếm hết chiều rộng của thẻ chứa */
     height: 100%; /* Đảm bảo ảnh luôn chiếm hết chiều cao của thẻ chứa */
-    border-radius: 16px 16px 0 0;
     transition: transform 0.5s ease; /* Thêm chuyển động mượt */
     transform-origin: center center; /* Phóng to từ trung tâm */
   }
@@ -57,7 +64,6 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto auto;
-    z-index: 3;
   }
   
   .day , .by_comment , .tab_content_header, .tab_content_content{
