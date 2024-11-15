@@ -87,6 +87,20 @@ $totalPage = ceil($totalRows / $rowsPerPage);
             color: white;
         }
     </style>
+    <script>
+
+        function updatePrice(currentValue) {
+            const formattedValue = new Intl.NumberFormat('vi-VN').format(currentValue) + " VNĐ";
+            document.getElementById("current-price").innerText = formattedValue;
+        }
+
+
+        function applyFilter() {
+            const minPrice = document.getElementById("price-range").min;
+            const maxPrice = document.getElementById("price-range").value;
+            window.location.href = `?start_gia=${minPrice}&end_gia=${maxPrice}`;
+        }
+    </script>
 </head>
 
 
@@ -109,14 +123,19 @@ $totalPage = ceil($totalRows / $rowsPerPage);
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="filter-section">
-                    <h3>Price</h3>
+                    <h3>Giá</h3>
                     <div class="price-range">
-                        <span id="min-price"> 5.500.000 đ </span>
-                        <input id="price-range" max="18500000" min="5500000" oninput="updatePrice()" type="range" />
-                        <span id="max-price"> 18.500.000 đ </span>
+                        <span id="min-price">500.000 vnđ</span>
+                        <input id="price-range" max="20000000" min="500000" step="500000"
+                            oninput="updatePrice(this.value)" type="range" />
+                        <span id="current-price"><?php if (isset($_GET['end_gia'])) {
+                            echo '' . $end_gia . '';
+                        } else {
+                            echo '10000000';
+                        } ?> vnđ</span>
                     </div>
                     <div class="filter-button">
-                        <button>FILTER</button>
+                        <button onclick="applyFilter()">LỌC</button>
                     </div>
                 </div>
                 <div class="categories-section">
@@ -127,37 +146,37 @@ $totalPage = ceil($totalRows / $rowsPerPage);
                         </li>
                         <div class="monn">
                             <li>
-                                <a href="cho.php?giong=">Chó Akita </a>
+                                <a href="cho.php?giong=Alaska">Chó Alaska </a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Alaska </a>
+                                <a href="cho.php?giong=Poodle">Chó Poodle </a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Becgie </a>
+                                <a href="cho.php?giong=Phốc sóc">Chó Phốc sóc</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Bichon</a>
+                                <a href="cho.php?giong=Corgi">Chó Corgi</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Bull Pháp</a>
+                                <a href="cho.php?giong=Chihuahua">Chó Chihuahua</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Chihuahua</a>
+                                <a href="cho.php?giong=Labrador">Chó Labrador</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Corgi</a>
+                                <a href="cho.php?giong=Bull Pháp">Chó Bull Pháp</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Doberman</a>
+                                <a href="cho.php?giong=Bichon">Chó Bichon</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Golden</a>
+                                <a href="cho.php?giong=Husky">Chó Husky</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Shiba</a>
+                                <a href="cho.php?giong=Golden">Chó Golden</a>
                             </li>
                             <li>
-                                <a href="cho.php?giong=">Chó Phốc Sóc</a>
+                                <a href="cho.php?giong=Pug">Chó Pug</a>
                             </li>
                         </div>
                     </ul>
@@ -165,7 +184,9 @@ $totalPage = ceil($totalRows / $rowsPerPage);
             </div>
             <div class="main1">
                 <div class="pagination">
-                    <div class="results">Hiển thị 1-36 của 73 kết quả</div>
+                    <div class="results">Hiển thị <?php echo $page; ?>/<?php echo $totalPage; ?> của
+                        <?php echo $totalRows; ?> kết quả
+                    </div>
                     <div class="sort">
                         <select>
                             <option>Mới nhất</option>
@@ -184,12 +205,12 @@ $totalPage = ceil($totalRows / $rowsPerPage);
                         <div class="product-item">
                             <img alt="Chó Poodle tiny vàng mơ" height="300"
                                 src="./quantri/anh/<?php echo $row['image_url']; ?>" width="300" />
-                            <a class="add-to-cart">Thêm vào giỏ hàng</a>
+                            <a href="cho.php?pet_id = <?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
                             <div class="product-info">
-                                <h4><?php echo $row['pet_name'] ; ?></h4>
-                                <p><?php echo $row['description'] ; ?></p>
+                                <h4><?php echo $row['pet_name']; ?></h4>
+                                <p><?php echo $row['description']; ?></p>
                                 <br>
-                                <p><?php echo $row['price'] ; ?></p>
+                                <p><?php echo $row['price']; ?> VNĐ</p>
                             </div>
                         </div>
                         <?php

@@ -95,11 +95,10 @@ $arr = mysqli_fetch_array($query);
             <tr>
                 <td>
                     <label>Trạng thái</label><br />
-                    <input type="text" name="status" value="<?php
+                    <input type="text" name="status" readonly value="<?php
                     if ($arr['quantity'] >= 1) {
                         echo "Còn hàng";
-                    }
-                    else {
+                    } else {
                         echo "Hết hàng";
                     }
                     ?>" />
@@ -118,7 +117,6 @@ $arr = mysqli_fetch_array($query);
                     } ?>
                 </td>
             </tr>
-
             <tr>
                 <td>
                     <label>Thông tin chi tiết thú cưng</label><br />
@@ -224,12 +222,12 @@ if (isset($_POST['submit'])) {
         $sqlUpdate = "UPDATE pets SET 
                       pet_name = '$pet_name', 
                       image_url = '$image_url', 
-                      price = '$price', 
+                      price = $price, 
                       pet_type = '$pet_type', 
                       breed = '$breed', 
                       age = '$age', 
                       status = '$status', 
-                      quantity = '$quantity', 
+                      quantity = $quantity, 
                       gender = '$gender', 
                       description = '$description' 
                       WHERE pet_id = $pet_id";
