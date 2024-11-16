@@ -328,6 +328,7 @@ h2 {
   text-align: center;
   width: 200px;
   padding: 10px;
+  
 }
 
 .product-info h4 {
@@ -519,6 +520,7 @@ h2 {
 .product-info {
   width: 60%;
   margin: 15px;
+  padding-left: 50px;
 }
 
 .product-info h1 {
