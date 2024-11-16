@@ -101,7 +101,7 @@ $result1 = mysqli_query($conn, $sql1);
                 <script src="./Giongmeo.js"></script>
                 <button class="add-to-cartt" onclick="addToCart()">Thêm vào giỏ hàng</button>
                 <div class="category_by">
-                    <p><strong>Category:</strong><a href="./anh_ln.html">Mèo Anh lông ngắn</a>
+                    <p><strong>Category:</strong><a href="meo.php?giong=<?php echo $row['breed']; ?>"><?php echo $row['breed']; ?></a>
                 </div>
             </div>
         </div>

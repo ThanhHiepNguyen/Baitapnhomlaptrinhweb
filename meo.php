@@ -7,16 +7,16 @@ $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $rowsPerPage;
 $tyle = "Mèo";
 
-// Khởi tạo các giá trị mặc định
+
 $start_gia = 0;
 $end_gia = PHP_INT_MAX;
 
-// Kiểm tra và lọc dữ liệu đầu vào
+
 if (isset($_GET['start_gia']) && isset($_GET['end_gia'])) {
     $start_gia = (int) $_GET['start_gia'];
     $end_gia = (int) $_GET['end_gia'];
 }
-// Kiểm tra điều kiện "giong"
+
 if (isset($_GET['giong'])) {
     $giongthucung = $_GET['giong'];
     $sql = "SELECT * FROM pets WHERE pet_type = '$tyle' AND breed = '$giongthucung' AND price BETWEEN $start_gia AND $end_gia LIMIT $offset, $rowsPerPage";
@@ -24,10 +24,10 @@ if (isset($_GET['giong'])) {
     $sql = "SELECT * FROM pets WHERE pet_type = '$tyle' AND price BETWEEN $start_gia AND $end_gia LIMIT $offset, $rowsPerPage";
 }
 
-// Thực thi câu lệnh
+
 $query = mysqli_query($conn, $sql);
 
-// Tính tổng số hàng để phân trang
+
 $totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND price  BETWEEN $start_gia AND $end_gia";
 if (isset($_GET['giong'])) {
     $totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND breed = '$giongthucung' AND price BETWEEN $start_gia AND $end_gia";
@@ -176,9 +176,9 @@ $totalPage = ceil($totalRows / $rowsPerPage);
 
                         ?>
                         <div class="product-item">
-                            <img alt="Chó Poodle tiny vàng mơ" height="300px"
-                                src="./quantri/anh/<?php echo $row['image_url']; ?>" width="300px" />
-                            <a href="meo.php?pet_id = <?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
+                            <a href="chitietthucung.php?pet_id=<?php echo $row['pet_id']; ?>"><img alt="" height="300px"
+                            src="./quantri/anh/<?php echo $row['image_url']; ?>" width="300px" /></a>
+                            <a href="meo.php?pet_id=<?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
                             <div class="product-info">
                                 <h4><?php echo $row['pet_name']; ?></h4>
                                 <br>
