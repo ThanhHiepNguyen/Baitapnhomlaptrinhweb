@@ -1,3 +1,28 @@
+<?php
+session_start();
+?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tên Trang</title>
+    <style>
+        .cart {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -20px;
+            background-color: #ff0000;
+            color: #ffffff;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
 <header class="header fixed">
     <div class="main-content">
         <div class="body-header">
@@ -66,9 +91,16 @@
                     <p>0393048626</p>
                 </a>
             </div>
-            <div class="cart">
-                <a href="#!" class="cart-shopping">
+            <div class="cart" >
+                <a href="./cart.php" class="cart-shopping">
                     <i class="fas fa-cart-plus" style="font-size: 24px"></i>
+                    <?php if (isset($_SESSION['cart'])): ?>
+                        <span class="cart-count" >
+                            <?php echo count($_SESSION['cart']); ?>
+                        </span>
+                    <?php else: ?>
+                        <span class="cart-count">0</span>
+                    <?php endif; ?>
                 </a>
             </div>
         </div>

@@ -178,7 +178,7 @@ $totalPage = ceil($totalRows / $rowsPerPage);
                         <div class="product-item">
                             <img alt="Chó Poodle tiny vàng mơ" height="300px"
                                 src="./quantri/anh/<?php echo $row['image_url']; ?>" width="300px" />
-                            <a href="meo.php?pet_id = <?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
+                                <a href="add_to_cart.php?pet_id=<?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
                             <div class="product-info">
                                 <h4><?php echo $row['pet_name']; ?></h4>
                                 <br>
