@@ -44,7 +44,7 @@
                     <div class="dog-content">
                         <h2>Poodle</h2>
                         <p class="direct">Thân thiện, thông minh và nhanh nhẹn</p>
-                        <a class="button" href="./Cho_pood.html">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Poodle">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 2 -->
@@ -53,7 +53,7 @@
                     <div class="dog-content">
                         <h2>Phốc Sóc</h2>
                         <p class="direct">Dòng chó lông xù có kích thước nhỏ</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Phốc sóc">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 3 -->
@@ -62,7 +62,7 @@
                     <div class="dog-content">
                         <h2>Corgi</h2>
                         <p class="direct">Thông minh, dễ chăm sóc và lanh lợi</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Corgi">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 4 -->
@@ -71,7 +71,7 @@
                     <div class="dog-content">
                         <h2>Alaska</h2>
                         <p class="direct">Ngoại hình to lớn,dũng mãnh, thân thiện</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Alaska">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 5 -->
@@ -81,7 +81,7 @@
                     <div class="dog-content">
                         <h2>Chihuahua</h2>
                         <p class="direct">Ngoại hình nhỏ nhắn, đáng yêu</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Chihuahua">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 6 -->
@@ -90,7 +90,7 @@
                     <div class="dog-content">
                         <h2>Labrado</h2>
                         <p class="direct">Thân thiện, tận tụy và chăm chi với công việc</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Labrador">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 7 -->
@@ -99,7 +99,7 @@
                     <div class="dog-content">
                         <h2>Bull Pháp</h2>
                         <p class="direct">Thân hình dễ thương, bản tính lanh lợi</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Bull Pháp">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 8 -->
@@ -108,7 +108,7 @@
                     <div class="dog-content">
                         <h2>Bichon</h2>
                         <p class="direct">Đáng yêu, thân thiện và rất thông minh</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Bichon">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 9 -->
@@ -117,7 +117,7 @@
                     <div class="dog-content">
                         <h2>Husky</h2>
                         <p class="direct">Hiền lành, dễ thương và thân thiện</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Husky">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 10 -->
@@ -126,7 +126,7 @@
                     <div class="dog-content">
                         <h2>Golden</h2>
                         <p class="direct">Ngoại hình cỡ vừa, rất thông minh</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Golden">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 11 -->
@@ -135,7 +135,7 @@
                     <div class="dog-content">
                         <h2>Pug</h2>
                         <p class="direct">Thân hình mũn mĩn, 4 chân ngắn</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php?giong=Pug">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ chó 12 -->
@@ -144,7 +144,7 @@
                     <div class="dog-content">
                         <h2>Giống chó khác</h2>
                         <p class="direct">Còn rất nhiều dòng khác tại Petshop</p>
-                        <a class="button" href="#">Xem thêm</a>
+                        <a class="button" href="cho.php">Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
                     <div class="dog-content">
                         <h2>Anh lông ngắn</h2>
                         <p class="direct">Ngoại hình đáng yêu, nhanh nhẹn</p>
-                        <a class="button" href="./anh_ln.html">Xem thêm</a>
+                        <a class="button" href="meo.php?giong=Mèo Anh lông ngắn">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ mèo 2 -->
@@ -169,7 +169,7 @@
                     <div class="dog-content">
                         <h2>Anh lông dài</h2>
                         <p class="direct">Ngoại hình đáng yêu, quấn chủ</p>
-                        <a class="button" href="./anh_ld.html">Xem thêm</a>
+                        <a class="button" href="meo.php?giong=Mèo Anh lông dài">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ mèo 3 -->
@@ -178,7 +178,7 @@
                     <div class="dog-content">
                         <h2>Bengal</h2>
                         <p class="direct">Thân thiện, quấn chủ, lông đốm vằn</p>
-                        <a class="button" href="./bengal.html">Xem thêm</a>
+                        <a class="button" href="meo.php?giong=Mèo Bengal">Xem thêm</a>
                     </div>
                 </div>
                 <!-- thẻ mèo 4 -->
@@ -188,7 +188,7 @@
                     <div class="dog-content">
                         <h2>Munchkin</h2>
                         <p class="direct">Ngoại hình đáng yêu,tính cách dễ chịu</p>
-                        <a class="button" href="./cmunchkin.html">Xem thêm</a>
+                        <a class="button" href="meo.php?giong=Mèo Munchkin">Xem thêm</a>
                     </div>
                 </div>
 

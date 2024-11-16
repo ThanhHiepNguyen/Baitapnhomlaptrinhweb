@@ -32,7 +32,7 @@ session_start();
             <nav>
                 <ul class="navbar">
                     <li class="navbar_item active">
-                        <a href="trangchu.php" class="navbar_item_label">Trang chủ <i class="fas fa-caret-down"></i></a>
+                        <a href="index.php" class="navbar_item_label">Trang chủ <i class="fas fa-caret-down"></i></a>
                         <ul class="navbar_item_dropdown">
                             <li class="dropdown_item">
                                 <a href="gioithieu.php">Giới thiệu</a>
