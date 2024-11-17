@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "./cauhinh/ketnoi.php";
 
 
@@ -16,8 +17,7 @@ $row = mysqli_fetch_array($result);
 $rowsPerPage = 4;
 $offset = 2;
 
-$sql1 = "SELECT * FROM pets WHERE breed = '{$row['breed']}' ";
-
+$sql1 = "SELECT * FROM pets WHERE breed = '{$row['breed']}' LIMIT $offset, $rowsPerPage ";
 $result1 = mysqli_query($conn, $sql1);
 ?>
 
@@ -40,17 +40,122 @@ $result1 = mysqli_query($conn, $sql1);
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/giongcho.css" />
     <link rel="stylesheet" href="./css/giongmeo.css" />
     <script src="./js/Giongmeo.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Trang chủ</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.add-to-cartt').on('click', function () {
+                const productId = $(this).data('product-id');
+                $.ajax({
+                    url: 'add_to_cart.php', // File PHP xử lý
+                    method: 'POST',
+                    data: { product_id: productId },
+                    success: function (response) {
+                        const res = JSON.parse(response); // Parse dữ liệu JSON từ server
+                        if (res.status === 'success') {
+                            // Cập nhật số lượng giỏ hàng
+                            $('#cart-count').text(res.cart_count);
+                        } else {
+                            alert(res.message); // Hiển thị lỗi nếu có
+                        }
+                    },
+                    error: function () {
+                        alert('Có lỗi xảy ra khi thêm vào giỏ hàng.');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
     <!-- header -->
-    <?php include_once('header.php') ?>
+    <header class="header fixed">
+        <div class="main-content">
+            <div class="body-header">
+                <!-- logo -->
+                <a href="trangchu.php"><img src="./images/image_trangchu/logo.png" alt="Ảnh logos hop"
+                        class="logo" /></a>
+                <!-- nav -->
+                <nav>
+                    <ul class="navbar">
+                        <li class="navbar_item active">
+                            <a href="index.php" class="navbar_item_label">Trang chủ <i
+                                    class="fas fa-caret-down"></i></a>
+                            <ul class="navbar_item_dropdown">
+                                <li class="dropdown_item">
+                                    <a href="gioithieu.php">Giới thiệu</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="tintuc.php">Tin tức</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="lienhe.php">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar_item">
+                            <a href="thucung.php" class="navbar_item_label">
+                                Thú cưng <i class="fas fa-caret-down"></i>
+                            </a>
+                            <ul class="navbar_item_dropdown">
+                                <li class="dropdown_item">
+                                    <a href="cho.php">Giống chó</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="meo.php    ">Giống mèo</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar_item">
+                            <a href="dichvu.php" class="navbar_item_label">Dịch vụ thú cưng <i
+                                    class="fas fa-caret-down"></i></a>
+                            <ul class="navbar_item_dropdown">
+                                <li class="dropdown_item">
+                                    <a href="dichvu_spa.php">Spa-Tạo kiểu</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="dichvu_khachsan.php">Khách sạn-Lưu trữ</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- thanh tìm kiếm -->
+                <div class="search-bar">
+                    <form action="search.php" method="post">
+                        <input type="text" name="timkiem" placeholder="Tìm kiếm..." class="search-input" />
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <!-- btn actioj -->
+                <div class="action">
+                    <a href="tel:0393048626" class="btn btn-sign-up">
+                        <div class="iconphone">
+                            <i class="fas fa-phone-alt" style="color: #77e23a; font-size: 16px"></i>
+                        </div>
+                        <p>0393048626</p>
+                    </a>
+                </div>
+                <div class="cart">
+                    <a href="./cart.php" class="cart-shopping">
+                        <i class="fas fa-cart-plus" style="font-size: 24px"></i>
+                        <span id="cart-count" class="cart-count">
+                            <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
     <article style="
           background-image: url(https://petnow.com.vn/wp-content/uploads/2023/08/bg-featured-title.jpg);
         ">
@@ -65,17 +170,10 @@ $result1 = mysqli_query($conn, $sql1);
         <div class="container_detail">
             <div class="product-image">
                 <img src="./quantri/anh/<?php echo $row['image_url']; ?>" alt=" ">
-                <!-- <div class="thumbnail-container">
-                    <img src="#" alt=" ">
-                    <img src="#" alt=" ">
-                    <img src="#" alt=" ">
-                    <img src="#" alt=" ">
-                    <img src="#" alt=" ">
-                </div> -->
             </div>
             <div class="product-info">
                 <h1 class="title_product"><?php echo $row['pet_name']; ?></h1>
-                <p class="price"><?php echo $row['price']; ?>  VND</p></br>
+                <p class="price"><?php echo number_format($row['price'], 0, ',', '.'); ?> VND</p></br>
                 <hr color="#ece7e2" width="100%" size="0px" noshade="noshade" />
                 <div class="details">
                     <p><strong>Tên:</strong> <?php echo $row['pet_name']; ?><br>
@@ -88,20 +186,34 @@ $result1 = mysqli_query($conn, $sql1);
                         <strong>Tình trạng:&nbsp;</strong><?php echo $row['status']; ?><br>
                         <strong>Ngày bán:</strong><?php echo $row['created_at']; ?>
                     </p>
-                    <p class="available"><small>Available in store </small></p>
+                    <br>
+                    <p class="available"><small><?php
+                    if ($row['quantity'] > 0) {
+                        echo "Có sẵn tại cửa hàng";
+                    } else {
+                        echo "<a href=\" \">Liên hệ với chúng tôi</a>";
+                    }
+                    ?></small></p>
+                    <a href=""></a>
                 </div>
                 <div class="quantity-container">
-                    <label for="quantity">Choose Quantity</label>
+                    <label for="quantity">Chọn số lượng</label>
                     <div class="quantity-controls">
                         <button type="button" class="decrease">-</button>
                         <input type="number" id="quantity" value="1" min="1" />
                         <button type="button" class="increase">+</button>
                     </div>
                 </div>
-                <script src="./Giongmeo.js"></script>
-                <button class="add-to-cartt" onclick="addToCart()">Thêm vào giỏ hàng</button>
+                <button class="add-to-cartt" data-product-id="<?php echo $row['pet_id']; ?>">Thêm vào giỏ hàng</button>
+
                 <div class="category_by">
-                    <p><strong>Category:</strong><a href="meo.php?giong=<?php echo $row['breed']; ?>"><?php echo $row['breed']; ?></a>
+                    <p><strong>Category:</strong><?php if ($row['pet_type'] == "Chó") { ?>
+                            <a href="cho.php?giong=<?php echo $row['breed']; ?>"><?php echo $row['breed']; ?></a>
+                            <?php
+                    } else { ?>
+                            <a href="meo.php?giong=<?php echo $row['breed']; ?>"><?php echo $row['breed']; ?></a>
+                            <?php
+                    } ?>
                 </div>
             </div>
         </div>
@@ -113,7 +225,7 @@ $result1 = mysqli_query($conn, $sql1);
                 </ul>
                 <div class="tabs-content">
                     <div id="tabs-describe" class="tabs-content-item">
-                        <p>
+                        <p class="p">
                             Mèo Anh lông ngắn màu xám xanh mã AN30842.
                             Bé có bộ lông ngắn và đặc trưng màu xám xanh
                             đẹp mắt, trở thành biểu tượng của sự sang
@@ -172,21 +284,23 @@ $result1 = mysqli_query($conn, $sql1);
                     <?php
                     while ($row1 = mysqli_fetch_array($result1)) {
                         ?>
-                        <li class="product-same-content" >
+                        <li class="product-same-content">
                             <div class="inner" href="chitietthucung.php?pet_id=<?php echo $row1['pet_id']; ?>">
                                 <div class="product-same-c4-thumbnail">
-                                    <a class="pic-product-same-c4" href="chitietthucung.php?pet_id=<?php echo $row1['pet_id']; ?>">
-                                        <img src="./quantri/anh/<?php echo $row1['image_url']; ?>" style="width:200px;height:200px;">
-                                        <a class="add-cart-product-same-c4-button" href="">
-                                            Thêm vào giỏ hàng
-                                        </a>
+                                    <a class="pic-product-same-c4"
+                                        href="chitietthucung.php?pet_id=<?php echo $row1['pet_id']; ?>">
+                                        <img src="./quantri/anh/<?php echo $row1['image_url']; ?>"
+                                            style="width:200px;height:200px;">
+                                        <button class="add-cart-product-same-c4-button"
+                                            data-product-id="<?php echo $row['pet_id']; ?>">Xem thêm</button>
                                     </a>
                                 </div>
                                 <div class="product-same-c4-infor">
                                     <a href="#">
-                                        <h4 class="title_product"><?php  
-                                        echo $row1['pet_name'] ;?></h4>
-                                        <p class="price"><?php echo $row1['price']?>  vnđ</p></br>
+                                        <h4 class="title_product"><?php
+                                        echo $row1['pet_name']; ?></h4>
+                                        <p class="price"><?php echo number_format($row['price'], 0, ',', '.'); ?> vnđ</p>
+                                        </br>
                                     </a>
                                 </div>
                             </div>

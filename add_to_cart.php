@@ -2,9 +2,11 @@
 session_start();
 require "./cauhinh/ketnoi.php";
 
-if (isset($_GET['pet_id'])) {
-    $pet_id = $_GET['pet_id'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Lấy ID sản phẩm từ yêu cầu AJAX
+    $pet_id = $_POST['product_id'];
 
+    // Khởi tạo giỏ hàng nếu chưa có
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
@@ -30,8 +32,15 @@ if (isset($_GET['pet_id'])) {
             ];
         }
     }
-}
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
-exit();
+    $cartCount = count($_SESSION['cart']);
+    echo json_encode([
+        'status' => 'success',
+        'cart_count' => $cartCount,
+        'message' => 'Sản phẩm đã được thêm vào giỏ hàng'
+    ]);
+    exit;
+}
+echo json_encode(['status' => 'error', 'message' => 'Yêu cầu không hợp lệ']);
+exit;
 ?>

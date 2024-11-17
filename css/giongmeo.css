@@ -328,7 +328,6 @@ h2 {
   text-align: center;
   width: 200px;
   padding: 10px;
-  
 }
 
 .product-info h4 {
@@ -520,7 +519,6 @@ h2 {
 .product-info {
   width: 60%;
   margin: 15px;
-  padding-left: 50px;
 }
 
 .product-info h1 {
@@ -548,7 +546,7 @@ h2 {
   padding-right: 2px;
 }
 
-p {
+.p {
   margin: 0 0 33px;
 }
 
@@ -606,12 +604,12 @@ p {
 }
 
 .add-to-cartt {
-  padding: 15px 40px;
+  padding: 12px 30px;
   background-color: #ff6600;
   color: #fffcfc;
   border: none;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -886,4 +884,19 @@ label.star:before {
 
 .submit-btn:hover {
   background-color: #e65c00;
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -20px;
+  background-color: #ff0000;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
 }

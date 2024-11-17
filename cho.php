@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "./cauhinh/ketnoi.php";
 
 $sql = "";
@@ -16,29 +17,46 @@ if (isset($_GET['start_gia']) && isset($_GET['end_gia'])) {
     $start_gia = (int) $_GET['start_gia'];
     $end_gia = (int) $_GET['end_gia'];
 }
-// Kiểm tra điều kiện "giong"
-if (isset($_GET['giong'])) {
-    $giongthucung = $_GET['giong'];
+if (!isset($_GET['giong']) && !isset($_GET['page'])) {
+    unset($_SESSION["giong"]);
+}
+if (isset($_GET['giong']) && !isset($_GET['page'])) {
+    $_SESSION["giong"] = $_GET['giong'];
+    $giongthucung = $_SESSION["giong"];
     $sql = "SELECT * FROM pets WHERE pet_type = '$tyle' AND breed = '$giongthucung' AND price BETWEEN $start_gia AND $end_gia LIMIT $offset, $rowsPerPage";
+} elseif (!isset($_GET['giong']) && isset($_GET['page'])) {
+    if (isset($_SESSION["giong"])) {
+        $giongthucung = $_SESSION["giong"];
+        $sql = "SELECT * FROM pets WHERE pet_type = '$tyle' AND breed = '$giongthucung' AND price BETWEEN $start_gia AND $end_gia LIMIT $offset, $rowsPerPage";
+    } else {
+        $sql = "SELECT * FROM pets WHERE pet_type = '$tyle' AND price BETWEEN $start_gia AND $end_gia LIMIT $offset, $rowsPerPage";
+    }
 } else {
     $sql = "SELECT * FROM pets WHERE pet_type = '$tyle' AND price BETWEEN $start_gia AND $end_gia LIMIT $offset, $rowsPerPage";
 }
 
-// Thực thi câu lệnh
+
 $query = mysqli_query($conn, $sql);
 
-// Tính tổng số hàng để phân trang
-$totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND price  BETWEEN $start_gia AND $end_gia";
-if (isset($_GET['giong'])) {
-    $totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND breed = '$giongthucung' AND price BETWEEN $start_gia AND $end_gia";
+
+
+if (isset($_GET['giong']) && !isset($_GET['page'])) {
+    $thu = $_GET['giong'];
+    $totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND breed = '$thu' AND price BETWEEN $start_gia AND $end_gia";
+} elseif (!isset($_GET['giong']) && isset($_GET['page'])) {
+    if (isset($_SESSION["giong"])) {
+        $thu = $_SESSION["giong"];
+        $totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND breed = '$thu' AND price BETWEEN $start_gia AND $end_gia";
+    } else {
+        $totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND price  BETWEEN $start_gia AND $end_gia";
+    }
+} else {
+    $totalRowsQuery = "SELECT COUNT(*) as total FROM pets WHERE pet_type = '$tyle' AND price  BETWEEN $start_gia AND $end_gia";
 }
 $totalRowsResult = mysqli_query($conn, $totalRowsQuery);
 $totalRows = mysqli_fetch_assoc($totalRowsResult)['total'];
 $totalPage = ceil($totalRows / $rowsPerPage);
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -61,6 +79,8 @@ $totalPage = ceil($totalRows / $rowsPerPage);
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Trang chủ</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
         #pagination {
             margin-top: 20px;
@@ -86,6 +106,21 @@ $totalPage = ceil($totalRows / $rowsPerPage);
             background-color: #4CAF50;
             color: white;
         }
+
+        .cart {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -20px;
+            background-color: #ff0000;
+            color: #ffffff;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
     </style>
     <script>
 
@@ -100,13 +135,115 @@ $totalPage = ceil($totalRows / $rowsPerPage);
             const maxPrice = document.getElementById("price-range").value;
             window.location.href = `?start_gia=${minPrice}&end_gia=${maxPrice}`;
         }
+
+        $(document).ready(function () {
+            $('.add-to-cart').on('click', function () {
+                const productId = $(this).data('product-id');
+                $.ajax({
+                    url: 'add_to_cart.php', // File PHP xử lý
+                    method: 'POST',
+                    data: { product_id: productId },
+                    success: function (response) {
+                        const res = JSON.parse(response); // Parse dữ liệu JSON từ server
+                        if (res.status === 'success') {
+                            // Cập nhật số lượng giỏ hàng
+                            $('#cart-count').text(res.cart_count);
+                        } else {
+                            alert(res.message); // Hiển thị lỗi nếu có
+                        }
+                    },
+                    error: function () {
+                        alert('Có lỗi xảy ra khi thêm vào giỏ hàng.');
+                    }
+                });
+            });
+        });
     </script>
 </head>
 
 
 <body>
     <!-- header -->
-    <?php include_once('header.php') ?>
+    <header class="header fixed">
+        <div class="main-content">
+            <div class="body-header">
+                <!-- logo -->
+                <a href="trangchu.php"><img src="./images/image_trangchu/logo.png" alt="Ảnh logos hop"
+                        class="logo" /></a>
+                <!-- nav -->
+                <nav>
+                    <ul class="navbar">
+                        <li class="navbar_item active">
+                            <a href="index.php" class="navbar_item_label">Trang chủ <i
+                                    class="fas fa-caret-down"></i></a>
+                            <ul class="navbar_item_dropdown">
+                                <li class="dropdown_item">
+                                    <a href="gioithieu.php">Giới thiệu</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="tintuc.php">Tin tức</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="lienhe.php">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar_item">
+                            <a href="thucung.php" class="navbar_item_label">
+                                Thú cưng <i class="fas fa-caret-down"></i>
+                            </a>
+                            <ul class="navbar_item_dropdown">
+                                <li class="dropdown_item">
+                                    <a href="cho.php">Giống chó</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="meo.php    ">Giống mèo</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="navbar_item">
+                            <a href="dichvu.php" class="navbar_item_label">Dịch vụ thú cưng <i
+                                    class="fas fa-caret-down"></i></a>
+                            <ul class="navbar_item_dropdown">
+                                <li class="dropdown_item">
+                                    <a href="dichvu_spa.php">Spa-Tạo kiểu</a>
+                                </li>
+                                <li class="dropdown_item">
+                                    <a href="dichvu_khachsan.php">Khách sạn-Lưu trữ</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- thanh tìm kiếm -->
+                <div class="search-bar">
+                    <form action="search.php" method="post">
+                        <input type="text" name="timkiem" placeholder="Tìm kiếm..." class="search-input" />
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <!-- btn actioj -->
+                <div class="action">
+                    <a href="tel:0393048626" class="btn btn-sign-up">
+                        <div class="iconphone">
+                            <i class="fas fa-phone-alt" style="color: #77e23a; font-size: 16px"></i>
+                        </div>
+                        <p>0393048626</p>
+                    </a>
+                </div>
+                <div class="cart">
+                    <a href="./cart.php" class="cart-shopping">
+                        <i class="fas fa-cart-plus" style="font-size: 24px"></i>
+                        <span id="cart-count" class="cart-count">
+                            <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
     <article style="
           background-image: url(https://petnow.com.vn/wp-content/uploads/2023/08/bg-featured-title.jpg);
         ">
@@ -131,7 +268,7 @@ $totalPage = ceil($totalRows / $rowsPerPage);
                         <span id="current-price"><?php if (isset($_GET['end_gia'])) {
                             echo '' . $end_gia . '';
                         } else {
-                            echo '10000000';
+                            echo '10.000.000';
                         } ?> vnđ</span>
                     </div>
                     <div class="filter-button">
@@ -142,7 +279,7 @@ $totalPage = ceil($totalRows / $rowsPerPage);
                     <h3>Categories</h3>
                     <ul>
                         <li>
-                            <a href="#">Giống Chó </a>
+                            <a href="cho.php">Giống Chó </a>
                         </li>
                         <div class="monn">
                             <li>
@@ -206,13 +343,14 @@ $totalPage = ceil($totalRows / $rowsPerPage);
 
                             <a href="chitietthucung.php?pet_id=<?php echo $row['pet_id']; ?>"><img alt="" height="300px"
                                     src="./quantri/anh/<?php echo $row['image_url']; ?>" width="300px" /></a>
-                                    <a href="add_to_cart.php?pet_id=<?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
-
+                            <button class="add-to-cart" data-product-id="<?php echo $row['pet_id']; ?>">Thêm vào giỏ
+                                hàng</button>
                             <div class="product-info">
                                 <h4><?php echo $row['pet_name']; ?></h4>
                                 <p><?php echo $row['description']; ?></p>
                                 <br>
-                                <p><?php echo $row['price']; ?> VNĐ</p>
+                                <p><?php echo number_format($row['price'], 0, ',', '.'); ?> VNĐ</p>
+
                             </div>
                         </div>
                         <?php

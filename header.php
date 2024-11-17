@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,10 +78,12 @@ session_start();
             </nav>
             <!-- thanh tìm kiếm -->
             <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm..." class="search-input" />
-                <button type="submit" class="search-button">
-                    <i class="fas fa-search"></i>
-                </button>
+                <form action="search.php" method="post">
+                    <input type="text" name="timkiem" placeholder="Tìm kiếm..." class="search-input" />
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
             </div>
             <!-- btn actioj -->
             <div class="action">
@@ -91,11 +94,11 @@ session_start();
                     <p>0393048626</p>
                 </a>
             </div>
-            <div class="cart" >
+            <div class="cart">
                 <a href="./cart.php" class="cart-shopping">
                     <i class="fas fa-cart-plus" style="font-size: 24px"></i>
                     <?php if (isset($_SESSION['cart'])): ?>
-                        <span class="cart-count" >
+                        <span class="cart-count">
                             <?php echo count($_SESSION['cart']); ?>
                         </span>
                     <?php else: ?>
