@@ -1,3 +1,8 @@
+<?php
+
+include './cauhinh/ketnoi.php';
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -22,6 +27,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Giới Thiệu PetShop</title>
+    <script src="./js/datlich.js"></script>
 </head>
 
 <body style="height: 100000px">
@@ -36,84 +42,103 @@
         </div>
     </article>
     <main>
-         <!--  Đăt lịch Spa cho thú cưng -->
+        <!--  Đăt lịch Spa cho thú cưng -->
 
-         <div class="DatLich">
+        <div class="DatLich">
             <div class="main-content">
-                <div class="datlichhen">
-                    <div class="tieude">
-                        <h2>Đặt lịch hẹn Spa cho thú cưng</h2>
-                    </div>
-                    <div class="colums">
-                        <!-- left -->
-                        <div class="left-colums">
-                            <div class="thongtin">
-                                <div class="name namethu">
-                                    <h3>Loại thú cưng</h3>
-                                    <select name="pet-type" id="pet-type">
-                                        <option value="dog">Chó</option>
-                                        <option value="cat">Mèo</option>
-                                    </select>
-                                </div>
-                                <div class="name namecoso">
-                                    <h3>Chọn cơ sở</h3>
-                                    <select name="coso-type" id="coso-type">
-                                        <option value="CS1">Cơ sở 1</option>
-                                        <option value="CS2">Cơ sở 2</option>
-                                        <option value="CS3">Cơ sở 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="loaihinhdichvu">
-                                <h3>Chọn loại hình dịch vụ Spa</h3>
-                                <div class="checkbox-group">
-                                    <label>
-                                        <input type="checkbox" name="dichvuspa" value="tam-ve-sinh" />Dịch vụ tắm vệ
-                                        sinh
-                                    </label>
-                                    <label></label>
-                                    <label><input type="checkbox" name="dichvuspa" value="cat-tao-kieu" />Dịch vụ cắt
-                                        tạo kiểu</label>
-                                    <label><input type="checkbox" name="dichvuspa" value="cao-body" />Dịch vụ cạo
-                                        body</label>
-                                    <label><input type="checkbox" name="dichvuspa" value="nhuom-long" />Dịch vụ nhuộm
-                                        lông thời trang</label>
-                                    <label><input type="checkbox" name="dichvuspa" value="dich-vu-khac" />Các dịch vụ
-                                        khác</label>
-                                </div>
-                            </div>
+                <form action="process_booking.php" method="post">
+                    <div class="datlichhen">
+                        <div class="tieude">
+                            <h2>Đặt lịch hẹn Spa cho thú cưng</h2>
                         </div>
-                        <!-- right -->
-                        <div class="right-colums">
-                            <div class="thongtin">
-                                <div class="name namethoigian">
-                                    <div class="Ngaygio">
-                                        <div class="Ngay">
-                                            <h2>Chọn Ngày</h2>
-                                            <input type="date" id="appointment-date" min="" />
-                                        </div>
-                                        <div class="Gio">
-                                            <h2>Chọn Giờ</h2>
-                                            <select id="appointment-time">
-                                                <!-- Giờ sẽ được cập nhật dựa vào ngày và giờ hiện tại -->
-                                            </select>
-                                        </div>
+                        <div class="colums">
+                            <!-- left -->
+                            <div class="left-colums">
+                                <div class="thongtin">
+                                    <div class="name namethu">
+                                        <h3>Loại thú cưng</h3>
+                                        <select name="pet-type" id="pet-type">
+                                            <option value="dog">Chó</option>
+                                            <option value="cat">Mèo</option>
+                                        </select>
                                     </div>
-                                    <div class="name namelienhe">
-                                        <h2>Thông Tin Liên Hệ</h2>
-                                        <input type="text" placeholder="Tên của bạn" id="customer-name"
-                                            class="input-text" />
-                                        <input type="email" placeholder="Email" id="customer-name" />
-                                        <input type="tel" placeholder="Số điện thoại" id="customer-phone" />
-                                        <textarea placeholder="Mô tả yêu cầu đặc biệt (nếu có)" id="description"
-                                            rows="4"></textarea>
+                                    <div class="name namecoso">
+                                        <h3>Chọn cơ sở</h3>
+                                        <select name="coso-type" id="coso-type">
+                                            <option value="CS1">Cơ sở 1</option>
+                                            <option value="CS2">Cơ sở 2</option>
+                                            <option value="CS3">Cơ sở 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="loaihinhdichvu">
+                                    <h3>Chọn loại hình dịch vụ Spa</h3>
+                                    <div class="checkbox-group">
+                                        <?php
+                                        $sql = "SELECT * FROM spa_services";
+                                        $result = mysqli_query($conn, $sql);
+                                        ?>
+                                        <select name="dichvu" id="">
+                                            <?php
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                ?>
+                                                <option value="<?php echo $row['service_id']; ?>">
+                                                    <?php echo $row['service_name'] ?>
+                                                </option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+
                                     </div>
                                 </div>
                             </div>
+                            <!-- right -->
+                            <div class="right-colums">
+                                <div class="thongtin">
+                                    <div class="name namethoigian">
+                                        <div class="Ngaygio">
+                                            <div class="Ngay">
+                                                <h2>Chọn Ngày</h2>
+                                                <input name="ngay" type="date" id="appointment-date" min="" />
+                                            </div>
+                                            <div class="Gio">
+                                                <h2>Chọn Giờ</h2>
+                                                <select name="gio" >
+                                                    <option value="8:00">8:00 AM</option>
+                                                    <option value="9:00">9:00 AM</option>
+                                                    <option value="10:00">10:00 AM</option>
+                                                    <option value="11:00">11:00 AM</option>
+                                                    <option value="12:00">12:00 PM</option>
+                                                    <option value="13:00">1:00 PM</option>
+                                                    <option value="14:00">2:00 PM</option>
+                                                    <option value="15:00">3:00 PM</option>
+                                                    <option value="16:00">4:00 PM</option>
+                                                    <option value="17:00">5:00 PM</option>
+                                                    <option value="18:00">6:00 PM</option>
+                                                    <option value="19:00">7:00 PM</option>
+                                                    <option value="20:00">8:00 PM</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="name namelienhe">
+                                            <h2>Thông Tin Liên Hệ</h2>
+                                            <input name="username" type="text" placeholder="Tên của bạn"
+                                                id="customer-name" class="input-text" />
+                                            <input name="email" type="email" placeholder="Email" id="customer-name" />
+                                            <input name="phone" type="tel" placeholder="Số điện thoại"
+                                                id="customer-phone" />
+                                            <textarea placeholder="Mô tả yêu cầu đặc biệt (nếu có)" id="description"
+                                                rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <button type="submmit" class="submit-button">Xác Nhận Đặt Lịch</button>
                     </div>
-                    <button class="submit-button">Xác Nhận Đặt Lịch</button>
-                </div>
+                </form>
             </div>
         </div>
 

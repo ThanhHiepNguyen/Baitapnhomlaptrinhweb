@@ -38,56 +38,56 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Xử lý khi người dùng nhấn nút "Xác Nhận Đặt Lịch"
-  const submitButton = document.querySelector(".submit-button");
+//   // Xử lý khi người dùng nhấn nút "Xác Nhận Đặt Lịch"
+//   const submitButton = document.querySelector(".submit-button");
 
-  submitButton.addEventListener("click", (event) => {
-    event.preventDefault();
+//   submitButton.addEventListener("click", (event) => {
+//     event.preventDefault();
 
-    // Lấy thông tin từ form
-    const petType = document.getElementById("pet-type").value;
-    const location = document.getElementById("coso-type").value;
-    const selectedServices = Array.from(
-      document.querySelectorAll("input[name='dichvuspa']:checked")
-    ).map((service) => service.value);
-    const date = document.getElementById("appointment-date").value;
-    const time = document.getElementById("appointment-time").value;
-    const name = document.getElementById("customer-name").value.trim();
-    const email = document.getElementById("customer-name").value.trim();
-    const phone = document.getElementById("customer-phone").value.trim();
-    const description = document.getElementById("description").value.trim();
+//     // Lấy thông tin từ form
+//     const petType = document.getElementById("pet-type").value;
+//     const location = document.getElementById("coso-type").value;
+//     const selectedServices = Array.from(
+//       document.querySelectorAll("input[name='dichvuspa']:checked")
+//     ).map((service) => service.value);
+//     const date = document.getElementById("appointment-date").value;
+//     const time = document.getElementById("appointment-time").value;
+//     const name = document.getElementById("customer-name").value.trim();
+//     const email = document.getElementById("customer-name").value.trim();
+//     const phone = document.getElementById("customer-phone").value.trim();
+//     const description = document.getElementById("description").value.trim();
 
-    // Kiểm tra các trường thông tin
-    if (
-      !petType ||
-      !location ||
-      selectedServices.length === 0 ||
-      !date ||
-      !time ||
-      !name ||
-      !email ||
-      !phone
-    ) {
-      alert("Vui lòng điền đầy đủ thông tin.");
-      return;
-    }
+//     // Kiểm tra các trường thông tin
+//     if (
+//       !petType ||
+//       !location ||
+//       selectedServices.length === 0 ||
+//       !date ||
+//       !time ||
+//       !name ||
+//       !email ||
+//       !phone
+//     ) {
+//       alert("Vui lòng điền đầy đủ thông tin.");
+//       return;
+//     }
 
-    const appointmentData = {
-      petType,
-      location,
-      selectedServices,
-      date,
-      time,
-      name,
-      email,
-      phone,
-      description,
-    };
+//     const appointmentData = {
+//       petType,
+//       location,
+//       selectedServices,
+//       date,
+//       time,
+//       name,
+//       email,
+//       phone,
+//       description,
+//     };
 
-    console.log("Dữ liệu đặt lịch:", appointmentData);
-    alert("Đặt lịch thành công!");
+//     console.log("Dữ liệu đặt lịch:", appointmentData);
+//     alert("Đặt lịch thành công!");
 
-    // Reset form sau khi đặt lịch thành công
-    document.querySelector("form").reset();
-  });
+//     // Reset form sau khi đặt lịch thành công
+//     document.querySelector("form").reset();
+//   });
 });
