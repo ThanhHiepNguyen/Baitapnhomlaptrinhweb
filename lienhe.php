@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/lienhe.css">
+    <link rel="stylesheet" href="./css/datlich.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,38 +31,92 @@
         style="
           background-image: url(https://petnow.com.vn/wp-content/uploads/2023/08/bg-featured-title.jpg);margin-bottom: 100px;">
         <div class="overlay-text">
-            <h1><b>Dịch vụ Spa thú cưng</b></h1>
-            <p><a href="#!">HOME</a> / DỊCH VỤ SPA THÚ CƯNG</p>
+            <h1><b>Liên hệ</b></h1>
+            <p><a href="#!">HOME</a> / Liên hệ</p>
         </div>
     </article>
     <main>
-        <div class="containers">
-            <div class="container">
-                <form action="#" class="main_contentS">
-                    <div class="master_icon">
-                        <div><i class="fa-solid fa-dog"></i></div>
-                        <div>
-                            <p>LIÊN HỆ</p>
+         <!--  Đăt lịch Spa cho thú cưng -->
+
+         <div class="DatLich">
+            <div class="main-content">
+                <div class="datlichhen">
+                    <div class="tieude">
+                        <h2>Đặt lịch hẹn Spa cho thú cưng</h2>
+                    </div>
+                    <div class="colums">
+                        <!-- left -->
+                        <div class="left-colums">
+                            <div class="thongtin">
+                                <div class="name namethu">
+                                    <h3>Loại thú cưng</h3>
+                                    <select name="pet-type" id="pet-type">
+                                        <option value="dog">Chó</option>
+                                        <option value="cat">Mèo</option>
+                                    </select>
+                                </div>
+                                <div class="name namecoso">
+                                    <h3>Chọn cơ sở</h3>
+                                    <select name="coso-type" id="coso-type">
+                                        <option value="CS1">Cơ sở 1</option>
+                                        <option value="CS2">Cơ sở 2</option>
+                                        <option value="CS3">Cơ sở 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="loaihinhdichvu">
+                                <h3>Chọn loại hình dịch vụ Spa</h3>
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" name="dichvuspa" value="tam-ve-sinh" />Dịch vụ tắm vệ
+                                        sinh
+                                    </label>
+                                    <label></label>
+                                    <label><input type="checkbox" name="dichvuspa" value="cat-tao-kieu" />Dịch vụ cắt
+                                        tạo kiểu</label>
+                                    <label><input type="checkbox" name="dichvuspa" value="cao-body" />Dịch vụ cạo
+                                        body</label>
+                                    <label><input type="checkbox" name="dichvuspa" value="nhuom-long" />Dịch vụ nhuộm
+                                        lông thời trang</label>
+                                    <label><input type="checkbox" name="dichvuspa" value="dich-vu-khac" />Các dịch vụ
+                                        khác</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- right -->
+                        <div class="right-colums">
+                            <div class="thongtin">
+                                <div class="name namethoigian">
+                                    <div class="Ngaygio">
+                                        <div class="Ngay">
+                                            <h2>Chọn Ngày</h2>
+                                            <input type="date" id="appointment-date" min="" />
+                                        </div>
+                                        <div class="Gio">
+                                            <h2>Chọn Giờ</h2>
+                                            <select id="appointment-time">
+                                                <!-- Giờ sẽ được cập nhật dựa vào ngày và giờ hiện tại -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="name namelienhe">
+                                        <h2>Thông Tin Liên Hệ</h2>
+                                        <input type="text" placeholder="Tên của bạn" id="customer-name"
+                                            class="input-text" />
+                                        <input type="email" placeholder="Email" id="customer-name" />
+                                        <input type="tel" placeholder="Số điện thoại" id="customer-phone" />
+                                        <textarea placeholder="Mô tả yêu cầu đặc biệt (nếu có)" id="description"
+                                            rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="content_main">
-                        <h1>Để lại thông tin liên hệ với PetNow</h1>
-                    </div>
-                    <div class="input_comment">
-                        <input class="input-in" type="text" placeholder="Your name">
-                        <input class="input-in" type="text" placeholder="Email address">
-                    </div>
-                    <div class="input_ins">
-                        <textarea class="input_in" style="max-width: 800px;" placeholder="Write a message"></textarea>
-                    </div>
-                    <div class="button_sends">
-                        <input class="button_send" type="submit" value="Send a message">
-                    </div>
-
-
+                    <button class="submit-button">Xác Nhận Đặt Lịch</button>
+                </div>
             </div>
-            </form>
         </div>
+
 
     </main>
 

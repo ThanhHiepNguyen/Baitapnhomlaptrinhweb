@@ -28,7 +28,7 @@ session_start();
     <div class="main-content">
         <div class="body-header">
             <!-- logo -->
-            <a href="trangchu.php"><img src="./images/image_trangchu/logo.png" alt="Ảnh logos hop" class="logo" /></a>
+            <a href="index.php"><img src="./images/image_trangchu/logo.png" alt="Ảnh logos hop" class="logo" /></a>
             <!-- nav -->
             <nav>
                 <ul class="navbar">

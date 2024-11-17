@@ -4,7 +4,7 @@
             <div class="content-footter">
                 <div class="footer1">
                     <div class="footer1_img">
-                        <a href="trangchu.php"><img style="width: 100px; height: 100px" src="./images/image_trangchu/logo.png" alt="Ảnh logo"
+                        <a href="index.php"><img style="width: 100px; height: 100px" src="./images/image_trangchu/logo.png" alt="Ảnh logo"
                                 class="logo" /></a>
                     </div>
                     <div class="footer1_content" style="width: 250px">

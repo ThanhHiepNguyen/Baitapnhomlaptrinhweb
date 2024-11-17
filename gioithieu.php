@@ -30,8 +30,8 @@
           background-image: url(https://petnow.com.vn/wp-content/uploads/2023/08/bg-featured-title.jpg);
         ">
         <div class="overlay-text">
-            <h1><b>Dịch vụ Spa thú cưng</b></h1>
-            <p><a href="#!">HOME</a> / DỊCH VỤ SPA THÚ CƯNG</p>
+            <h1><b>Giới Thiệu</b></h1>
+            <p><a href="#!">HOME</a> / Giới Thiệu</p>
         </div>
     </article>
     <main>

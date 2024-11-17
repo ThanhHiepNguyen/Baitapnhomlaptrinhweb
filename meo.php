@@ -246,8 +246,8 @@ $totalPage = ceil($totalRows / $rowsPerPage);
           background-image: url(https://petnow.com.vn/wp-content/uploads/2023/08/bg-featured-title.jpg);
         ">
         <div class="overlay-text">
-            <h1><b>Dịch vụ Spa thú cưng</b></h1>
-            <p><a href="#!">HOME</a> / DỊCH VỤ SPA THÚ CƯNG</p>
+            <h1><b>Giống Mèo</b></h1>
+            <p><a href="#!">HOME</a> / Giống Mèo</p>
         </div>
     </article>
     <main>
