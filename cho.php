@@ -206,8 +206,7 @@ $totalPage = ceil($totalRows / $rowsPerPage);
 
                             <a href="chitietthucung.php?pet_id=<?php echo $row['pet_id']; ?>"><img alt="" height="300px"
                                     src="./quantri/anh/<?php echo $row['image_url']; ?>" width="300px" /></a>
-                            <a href="add_to_cart.php?pet_id = <?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ
-                                hàng</a>
+                                    <a href="add_to_cart.php?pet_id=<?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
 
                             <div class="product-info">
                                 <h4><?php echo $row['pet_name']; ?></h4>

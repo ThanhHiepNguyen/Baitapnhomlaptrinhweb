@@ -54,7 +54,7 @@ $totalPage = ceil($totalRows / $rowsPerPage);
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/footer.css" />
-    <link rel="stylesheet" href="./css/giongmeo.css" />
+    <link rel="stylesheet" href="./css//giongcho.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -180,7 +180,6 @@ $totalPage = ceil($totalRows / $rowsPerPage);
                             <a href="chitietthucung.php?pet_id=<?php echo $row['pet_id']; ?>"><img alt="" height="300px"
                             src="./quantri/anh/<?php echo $row['image_url']; ?>" width="300px" /></a>
                             <a href="add_to_cart.php?pet_id=<?php echo $row['pet_id']; ?>" class="add-to-cart">Thêm vào giỏ hàng</a>
-
                             <div class="product-info">
                                 <h4><?php echo $row['pet_name']; ?></h4>
                                 <br>
